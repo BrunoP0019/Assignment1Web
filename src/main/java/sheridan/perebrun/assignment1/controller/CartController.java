@@ -3,14 +3,12 @@ package sheridan.perebrun.assignment1.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import sheridan.perebrun.assignment1.model.Book;
-import sheridan.perebrun.assignment1.service.CartService;
 import sheridan.perebrun.assignment1.service.BookService;
-
-import java.util.List;
+import sheridan.perebrun.assignment1.service.CartService;
 
 @Controller
 public class CartController {
@@ -22,31 +20,23 @@ public class CartController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/cart") // ✅ Route to show the shopping cart
+    @GetMapping("/cart")
     public String showCart(Model model, HttpServletRequest request) {
-        List<Book> cartItems = cartService.getCartItems();
-        model.addAttribute("cartItems", cartItems);
-        model.addAttribute("subtotal", cartService.calculateSubTotal(cartItems)); // ✅ Passes book list
-        model.addAttribute("total", cartService.calculateTotal(cartItems));
-        model.addAttribute("currentPage", request.getRequestURI());// ✅ Passes book list
-        return "shopping_cart"; // ✅ Must match shopping_cart.html in templates
+        model.addAttribute("books", bookService.getAllBooks()); // ✅ Show all books
+        model.addAttribute("cartItems", cartService.getCartItems()); // ✅ Show books in cart
+        model.addAttribute("cartCount", cartService.getCartSize()); // ✅ Show cart count
+        model.addAttribute("currentPage", request.getRequestURI()); // ✅ Highlight active page
+        return "shopping_cart";
     }
 
-    @PostMapping("/cart/add") // ✅ Route to add a book to the cart
+    @PostMapping("/cart/add")
     public String addToCart(@RequestParam String isbn) {
         Book book = bookService.getBookByISBN(isbn);
         if (book != null) {
             cartService.addToCart(book);
         }
-        return "redirect:/cart"; // ✅ Redirects to cart page after adding
-    }
-
-    @PostMapping("/cart/remove") // ✅ Route to remove a book from the cart
-    public String removeFromCart(@RequestParam String isbn) {
-        Book book = bookService.getBookByISBN(isbn);
-        if (book != null) {
-            cartService.removeFromCart(book);
-        }
-        return "redirect:/cart"; // ✅ Redirects to cart page after removing
+        return "redirect:/cart"; // ✅ Refresh the page to update cart count
     }
 }
+
+

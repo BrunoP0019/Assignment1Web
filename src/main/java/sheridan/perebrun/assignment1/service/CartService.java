@@ -15,10 +15,6 @@ public class CartService {
         cart.addToCart(book);
     }
 
-    public void removeFromCart(Book book) {
-        cart.removeFromCart(book);
-    }
-
     public List<Book> getCartItems() {
         return cart.getCartBooks(); // Returns the list of books
     }
@@ -35,4 +31,7 @@ public class CartService {
         return subtotal + (subtotal * 0.13);
     }
 
+    public Integer getCartSize() {
+        return cart.getCartBooks().size();
+    }
 }
