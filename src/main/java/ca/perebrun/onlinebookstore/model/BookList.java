@@ -1,16 +1,15 @@
 package ca.perebrun.onlinebookstore.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class BookList {
-    private List<Book> books;
 
-    public java.util.List<Book> getBooks() {
-        return books;
-    }
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
+@Getter
+public class BookList {
+    private List<Book> books = new ArrayList<>();
 
     public void addBook(Book book) {
         books.add(book);

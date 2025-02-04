@@ -1,16 +1,20 @@
 package ca.perebrun.onlinebookstore.model;
 
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class BookCartList extends BookList {
-    public double calculateSubTotal(){
-        double subtotal = 0;
-        for (int i = 0; i < getBooks().size(); i++) {
-            subtotal += getBooks().get(i).getPrice();
-        }
-        return subtotal;
+    private List<Book> cartBooks = new ArrayList<>();
+
+    public void addToCart(Book book) {
+        cartBooks.add(book);
     }
-    public double calculateTotal(){
-        return calculateSubTotal() + calculateSubTotal() * 0.13;
+
+    public void removeFromCart(Book book) {
+        cartBooks.remove(book);
     }
+
 }
