@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Checkout Successful</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<th:block th:insert="fragments/header.html"></th:block>
+
+<h1>Thank You for Your Purchase!</h1>
+<p>Your order has been placed successfully.</p>
+
+<a href="/books" class="btn">Continue Shopping</a>
+
+<th:block th:insert="fragments/footer.html"></th:block>
+</body>
+</html>

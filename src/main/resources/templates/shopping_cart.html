@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<th:block th:insert="fragments/header.html"></th:block>
+
+<h1>Shopping Cart</h1>
+
+<table>
+  <tr>
+    <th>ISBN</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+  <tr th:each="book : ${cartItems}">
+    <td th:text="${book.bookISBN}"></td>
+    <td th:text="${book.bookTitle}"></td>
+    <td th:text="${book.bookAuthor}"></td>
+    <td th:text="${book.bookPrice}"></td>
+    <td>
+      <form action="/cart/remove" method="post">
+        <input type="hidden" name="isbn" th:value="${book.bookISBN}">
+        <button type="submit">Remove</button>
+      </form>
+    </td>
+  </tr>
+</table>
+
+<h3>Subtotal: $<span th:text="${subtotal}"></span></h3>
+<h3>Total (including tax): $<span th:text="${total}"></span></h3>
+
+<form action="/checkout" method="get">
+  <button type="submit">Proceed to Checkout</button>
+</form>
+
+<th:block th:insert="fragments/footer.html"></th:block>
+</body>
+</html>
+

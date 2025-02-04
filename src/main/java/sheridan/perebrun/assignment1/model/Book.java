@@ -1,4 +1,4 @@
-package ca.perebrun.onlinebookstore.model;
+package sheridan.perebrun.assignment1.model;
 
 import lombok.*;
 
@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
-    private String bookISBN;
-    private String bookTitle;
-    private String bookAuthor;
+    private String isbn;
+    private String title;
+    private String author;
     private double price;
 
     public void setPrice(double price) {

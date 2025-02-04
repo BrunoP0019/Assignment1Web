@@ -1,4 +1,4 @@
-package ca.perebrun.onlinebookstore.model;
+package sheridan.perebrun.assignment1.model;
 
 import lombok.Getter;
 

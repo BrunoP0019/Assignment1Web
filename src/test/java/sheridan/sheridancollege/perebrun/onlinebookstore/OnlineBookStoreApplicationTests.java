@@ -1,4 +1,4 @@
-package ca.sheridancollege.perebrun.onlinebookstore;
+package sheridan.sheridancollege.perebrun.onlinebookstore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

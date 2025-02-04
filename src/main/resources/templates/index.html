@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Online Bookstore</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<th:block th:insert="fragments/header.html"></th:block>
+
+<h1>Welcome to the Online Bookstore</h1>
+<p>Browse our collection and add books to your cart!</p>
+
+<a href="/books" class="btn">Start Shopping</a>
+
+<th:block th:insert="fragments/footer.html"></th:block>
+</body>
+</html>
+
