@@ -1,5 +1,6 @@
 package sheridan.perebrun.assignment1.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,10 @@ public class CheckoutController {
     }
 
     @GetMapping("/checkout")
-    public String showCheckoutPage(Model model) {
+    public String showCheckoutPage(Model model, HttpServletRequest request) {
         model.addAttribute("subtotal", cartService.calculateSubTotal(cartService.getCartItems()));
         model.addAttribute("total", cartService.calculateTotal(cartService.getCartItems()));
+        model.addAttribute("currentPage", request.getRequestURI());
         return "checkout";
     }
 

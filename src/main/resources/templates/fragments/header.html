@@ -1,7 +1,11 @@
-<nav>
-  <a th:href="@{/}">🏠 Home</a> |
-  <a th:href="@{/books}">📚 Browse Books</a> |
-  <a th:href="@{/cart}">🛒 View Cart</a> |
-  <a th:href="@{/checkout}">💳 Checkout</a>
-</nav>
+<div class="navbar">
+  <nav>
+    <a th:href="@{/}" th:classappend="${currentPage == '/' ? 'active' : ''}" class="nav-item">Home</a>
+    <a th:href="@{/books}" th:classappend="${currentPage == '/books' ? 'active' : ''}" class="nav-item">Available Books</a>
+    <a th:href="@{/cart}" th:classappend="${currentPage == '/cart' ? 'active' : ''}" class="nav-item">Shopping Books</a>
+    <a th:href="@{/checkout}" th:classappend="${currentPage == '/checkout' ? 'active' : ''}" class="nav-item">Check Out Page</a>
+  </nav>
+</div>
+
+
 

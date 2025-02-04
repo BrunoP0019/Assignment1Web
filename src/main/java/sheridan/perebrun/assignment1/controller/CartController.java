@@ -1,5 +1,6 @@
 package sheridan.perebrun.assignment1.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,12 @@ public class CartController {
     }
 
     @GetMapping("/cart") // ✅ Route to show the shopping cart
-    public String showCart(Model model) {
+    public String showCart(Model model, HttpServletRequest request) {
         List<Book> cartItems = cartService.getCartItems();
         model.addAttribute("cartItems", cartItems);
         model.addAttribute("subtotal", cartService.calculateSubTotal(cartItems)); // ✅ Passes book list
-        model.addAttribute("total", cartService.calculateTotal(cartItems)); // ✅ Passes book list
+        model.addAttribute("total", cartService.calculateTotal(cartItems));
+        model.addAttribute("currentPage", request.getRequestURI());// ✅ Passes book list
         return "shopping_cart"; // ✅ Must match shopping_cart.html in templates
     }
 

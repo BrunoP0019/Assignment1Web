@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>Shopping Cart</title>
-  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Shopping Books</title>
+  <link rel="stylesheet" th:href="@{/css/styles1.css}"> <!-- Header styles -->
+  <link rel="stylesheet" th:href="@{/css/styles3.css}"> <!-- Page-specific styles -->
 </head>
 <body>
+<!-- Include Header -->
 <th:block th:insert="fragments/header.html"></th:block>
 
-<h1>Shopping Cart</h1>
+<div class="container">
+  <h2 class="page-title">Shopping Books page</h2>
 
-<table>
-  <tr>
-    <th>ISBN</th>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Price</th>
-    <th>Action</th>
-  </tr>
-  <tr th:each="book : ${cartItems}">
-    <td th:text="${book.bookISBN}"></td>
-    <td th:text="${book.bookTitle}"></td>
-    <td th:text="${book.bookAuthor}"></td>
-    <td th:text="${book.bookPrice}"></td>
-    <td>
-      <form action="/cart/remove" method="post">
-        <input type="hidden" name="isbn" th:value="${book.bookISBN}">
-        <button type="submit">Remove</button>
-      </form>
-    </td>
-  </tr>
-</table>
+  <!-- Shopping Cart Table -->
+  <table class="book-table">
+    <tr>
+      <th>ISBN</th>
+      <th>TITLE</th>
+      <th>AUTHOR</th>
+      <th>Price</th>
+      <th>Add to Shopping Cart</th>
+    </tr>
+    <tr th:each="book : ${books}">
+      <td th:text="${book.isbn}"></td>
+      <td th:text="${book.title}"></td>
+      <td th:text="${book.author}"></td>
+      <td th:text="${book.price}"></td>
+      <td>
+        <form action="/cart/add" method="post">
+          <input type="hidden" name="isbn" th:value="${book.isbn}">
+          <button type="submit" class="cart-link">Add to Cart</button>
+        </form>
+      </td>
+    </tr>
+  </table>
 
-<h3>Subtotal: $<span th:text="${subtotal}"></span></h3>
-<h3>Total (including tax): $<span th:text="${total}"></span></h3>
+  <!-- Shopping Cart Summary -->
+  <h3 class="cart-summary-title">Number of Books in the Shopping Cart</h3>
+  <p class="cart-count" th:text="${cartItems.size()}"></p>
 
-<form action="/checkout" method="get">
-  <button type="submit">Proceed to Checkout</button>
-</form>
-
-<th:block th:insert="fragments/footer.html"></th:block>
+  <!-- Footer -->
+  <footer>
+    <p><em><strong>Sheridan College</strong></em> ❤️ &nbsp; Copyright © Le Nguyen</p>
+    <p><small>ID: 484385423</small></p>
+  </footer>
+</div>
 </body>
 </html>
+
+
 

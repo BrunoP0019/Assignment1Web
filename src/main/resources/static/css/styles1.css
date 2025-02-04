@@ -1,0 +1,38 @@
+/* Navigation Bar */
+.navbar {
+    background-color: #222; /* Dark background */
+    padding: 15px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 10px 20px;
+    transition: background 0.3s ease-in-out;
+}
+
+.nav-item:hover {
+    background-color: #444;
+}
+
+/* Highlight the active/current page */
+.nav-item.active {
+    background-color: #4CAF50; /* Green for active page */
+    color: white;
+    border-radius: 5px;
+}
+
+
+
+
+

@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>Checkout Successful</title>
-  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <title>Check Out Page</title>
+  <link rel="stylesheet" th:href="@{/css/styles1.css}"> <!-- Header styles -->
+  <link rel="stylesheet" th:href="@{/css/styles4.css}"> <!-- Page-specific styles -->
 </head>
 <body>
+<!-- Include Header -->
 <th:block th:insert="fragments/header.html"></th:block>
 
-<h1>Thank You for Your Purchase!</h1>
-<p>Your order has been placed successfully.</p>
+<div class="container">
+  <h2 class="page-title">Check out page!</h2>
 
-<a href="/books" class="btn">Continue Shopping</a>
+  <!-- Checkout Table -->
+  <table class="checkout-table">
+    <tr>
+      <th>ISBN</th>
+      <th>TITLE</th>
+      <th>AUTHOR</th>
+      <th>Price</th>
+    </tr>
+    <tr th:each="book : ${cartItems}">
+      <td th:text="${book.isbn}"></td>
+      <td th:text="${book.title}"></td>
+      <td th:text="${book.author}"></td>
+      <td th:text="${book.price}"></td>
+    </tr>
+    <!-- Summary Rows -->
+    <tr class="summary-row">
+      <td colspan="3"><strong>Subtotal</strong></td>
+      <td th:text="${subtotal}"></td>
+    </tr>
+    <tr class="summary-row">
+      <td colspan="3"><strong>Tax 13%</strong></td>
+      <td th:text="${tax}"></td>
+    </tr>
+    <tr class="summary-row total-row">
+      <td colspan="3"><strong>Total</strong></td>
+      <td th:text="${total}"></td>
+    </tr>
+  </table>
 
-<th:block th:insert="fragments/footer.html"></th:block>
+  <!-- Footer -->
+  <footer>
+    <p><em><strong>Sheridan College</strong></em> ❤️ &nbsp; Copyright © Le Nguyen</p>
+    <p><small>ID: 484385423</small></p>
+  </footer>
+</div>
 </body>
 </html>
