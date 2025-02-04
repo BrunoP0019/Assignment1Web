@@ -10,7 +10,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String showHomePage(Model model, HttpServletRequest request) {
-        model.addAttribute("currentPage", request.getRequestURI()); // ✅ Pass current page
+        model.addAttribute("currentPage", request.getRequestURI());
         return "index";
     }
 }

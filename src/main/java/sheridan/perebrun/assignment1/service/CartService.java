@@ -1,37 +1,41 @@
 package sheridan.perebrun.assignment1.service;
 
-
 import org.springframework.stereotype.Service;
 import sheridan.perebrun.assignment1.model.Book;
-import sheridan.perebrun.assignment1.model.BookCartList;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 
 @Service
 public class CartService {
-    private final BookCartList cart = new BookCartList();
+    private final List<Book> cartBooks = new ArrayList<>();
+    private final DecimalFormat df = new DecimalFormat("0.00");
 
     public void addToCart(Book book) {
-        cart.addToCart(book);
+        if (!cartBooks.contains(book)) {
+            cartBooks.add(book);
+        }
     }
 
     public List<Book> getCartItems() {
-        return cart.getCartBooks(); // Returns the list of books
+        return cartBooks;
     }
 
-    public double calculateSubTotal(List<Book> books) {
-        double subtotal = 0;
-        for (Book book : books) {
-            subtotal += book.getPrice();
-        }
-        return subtotal;
-    }
-    public double calculateTotal(List<Book> books) {
-        double subtotal = calculateSubTotal(books);
-        return subtotal + (subtotal * 0.13);
+    public int getCartSize() {
+        return cartBooks.size();
     }
 
-    public Integer getCartSize() {
-        return cart.getCartBooks().size();
+    public double calculateSubTotal() {
+        return cartBooks.stream().mapToDouble(Book::getPrice).sum();
+    }
+
+    public String calculateTax() {
+        return df.format(calculateSubTotal() * 0.13);
+    }
+
+    public String calculateTotal() {
+        return df.format(calculateSubTotal() + Double.parseDouble(calculateTax()));
     }
 }
+

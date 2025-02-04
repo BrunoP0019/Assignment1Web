@@ -18,14 +18,14 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/books") // ✅ Ensures the /books route exists
+    @GetMapping("/books")
     public String showBooks(Model model,  HttpServletRequest request) {
         model.addAttribute("books", bookService.getAllBooks());
         model.addAttribute("currentPage", request.getRequestURI());
-        return "available_books"; // ✅ Must match available_books.html in templates
+        return "available_books";
     }
 
-    @PostMapping("/books/add") // ✅ Handles adding books
+    @PostMapping("/books/add")
     public String addBook(
                           @RequestParam String title,
                           @RequestParam String author,
@@ -33,7 +33,7 @@ public class BookController {
         Random random = new Random();
         int randIsbn = random.nextInt(100000,1000000);
         bookService.addBook(new Book(String.valueOf(randIsbn), title, author, price));
-        return "redirect:/books"; // ✅ Refreshes the page
+        return "redirect:/books";
     }
 }
 

@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <title>Shopping Books</title>
-  <link rel="stylesheet" th:href="@{/css/styles1.css}"> <!-- ✅ Keep the header styling -->
-  <link rel="stylesheet" th:href="@{/css/styles3.css}"> <!-- ✅ Page-specific styles -->
+  <link rel="stylesheet" th:href="@{/css/styles1.css}">
+  <link rel="stylesheet" th:href="@{/css/styles3.css}">
 </head>
 <body>
-<!-- ✅ Include Header -->
+<!-- Include Header -->
 <th:block th:insert="fragments/header.html"></th:block>
 
 <div class="container">
   <h2 class="page-title">Shopping Books page</h2>
 
-  <!-- ✅ Shopping Cart Table (Displays All Books) -->
+  <!-- Shopping Cart Table -->
   <table class="book-table">
     <tr>
       <th>ISBN</th>
@@ -21,7 +21,7 @@
       <th>Price</th>
       <th>Add to Shopping Cart</th>
     </tr>
-    <tr th:each="book : ${books}"> <!-- ✅ Loops through ALL books -->
+    <tr th:each="book : ${books}"> <!-- Loops through ALL books -->
       <td th:text="${book.isbn}"></td>
       <td th:text="${book.title}"></td>
       <td th:text="${book.author}"></td>
@@ -37,12 +37,12 @@
 
   <!-- ✅ Shopping Cart Summary (Cart Item Count) -->
   <h3 class="cart-summary-title">Number of Books in the Shopping Cart</h3>
-  <p class="cart-count" th:text="${cartCount}"></p> <!-- ✅ Updated automatically on refresh -->
+  <p class="cart-count" th:text="${cartCount}"></p> <!-- Updated automatically on refresh -->
 
-  <!-- ✅ Footer (Matches the Original Design) -->
+  <!-- Footer -->
   <footer>
-    <p><em><strong>Sheridan College</strong></em> ❤️ &nbsp; Copyright © Le Nguyen</p>
-    <p><small>ID: 484385423</small></p>
+    <p><em><strong>Bruno Barros</strong></em> </p>
+    <p><small>ID: 991758456</small></p>
   </footer>
 </div>
 </body>

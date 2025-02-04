@@ -22,10 +22,10 @@ public class CartController {
 
     @GetMapping("/cart")
     public String showCart(Model model, HttpServletRequest request) {
-        model.addAttribute("books", bookService.getAllBooks()); // ✅ Show all books
-        model.addAttribute("cartItems", cartService.getCartItems()); // ✅ Show books in cart
-        model.addAttribute("cartCount", cartService.getCartSize()); // ✅ Show cart count
-        model.addAttribute("currentPage", request.getRequestURI()); // ✅ Highlight active page
+        model.addAttribute("books", bookService.getAllBooks());
+        model.addAttribute("cartItems", cartService.getCartItems());
+        model.addAttribute("cartCount", cartService.getCartSize());
+        model.addAttribute("currentPage", request.getRequestURI());
         return "shopping_cart";
     }
 
@@ -35,7 +35,7 @@ public class CartController {
         if (book != null) {
             cartService.addToCart(book);
         }
-        return "redirect:/cart"; // ✅ Refresh the page to update cart count
+        return "redirect:/cart";
     }
 }
 

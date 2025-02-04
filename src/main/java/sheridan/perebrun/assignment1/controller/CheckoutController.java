@@ -16,11 +16,13 @@ public class CheckoutController {
 
     @GetMapping("/checkout")
     public String showCheckoutPage(Model model, HttpServletRequest request) {
-        model.addAttribute("subtotal", cartService.calculateSubTotal(cartService.getCartItems()));
-        model.addAttribute("total", cartService.calculateTotal(cartService.getCartItems()));
+        model.addAttribute("cartItems", cartService.getCartItems());
+        model.addAttribute("subtotal", cartService.calculateSubTotal());
+        model.addAttribute("tax", cartService.calculateTax());
+        model.addAttribute("total", cartService.calculateTotal());
         model.addAttribute("currentPage", request.getRequestURI());
         return "checkout";
     }
-
 }
+
 
